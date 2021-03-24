@@ -19,7 +19,9 @@
                 {{- with $subtitle -}}
                 <h2 class="subtitle is-5 is-muted">
                 {{ . }}
+                {{- partial "main_description.html" . -}}
                 </h2>
+                
                 {{- end -}}
                 {{/*  <p>
                 <a class="button cta rounded primary-btn raised" href="{{- $buttonLink -}}">
