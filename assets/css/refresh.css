@@ -19,36 +19,6 @@
 }
 /* end */
 
-/* Styles for code snippets */
-.code-highlight{
-  font-size: 1.1em;
-  border-radius: 4px;
-}
-.content pre code table td:first-child{
-  border-right: 1px solid #999;/* #dbdbdb;*/
-  text-align: right;
-  padding-right: 13px;
-  color: #999; /*f8f8f2*/
-}
-.code-highlight table td{
-  border: 0px;
-}
-.code-highlight table{
-  width: auto;
-}
-.nonumbers pre code table td:first-child{
-  display: none;
-}
-.codeinline{
-  display:inline !important;        
-  padding-top: 0.25em; 
-  padding-right: 0.250em;
-  padding-bottom: 0.25em;                            
-  padding-left: 0.25em;                               
-  border-radius: 4px;                                
-  white-space: nowrap;
-}  
-/* End */
 
 /* Style to remove srollbar width */
 div.scroll { 

@@ -3,17 +3,12 @@
 {{- $js3 := resources.Get "js/modernizr-3.6.0.js" -}}
 {{- $js4 := resources.Get "js/refresh.js" -}}
 
-{{- $js10 := resources.Get "js/highlight.9.18.1.js" -}}
-{{- $js11 := resources.Get "js/highlightjs-line-numbers.2.7.0.min.js" -}}
 
 {{- if .Site.Params.jsMinify -}}
     {{- $js1 = $js1 | resources.Minify -}}
     {{- $js2 = $js2 | resources.Minify -}}
     {{- $js3 = $js3 | resources.Minify -}}
     {{- $js4 = $js4 | resources.Minify -}}
-
-    {{- $js10 = $js10 | resources.Minify -}}
-    {{- $js11 = $js11 | resources.Minify -}}
 {{- end -}}
 
 {{- if .Site.Params.jsIntegrity -}}
@@ -21,9 +16,6 @@
   {{- $js2 = $js2 | resources.Fingerprint -}}
   {{- $js3 = $js3 | resources.Fingerprint -}}
   {{- $js4 = $js4 | resources.Fingerprint -}}
-
-  {{- $js10 = $js10 | resources.Fingerprint -}}
-  {{- $js11 = $js11 | resources.Fingerprint -}}
 {{- end -}}
 
 {{- if .Site.Params.jsIntegrity -}}
@@ -38,26 +30,9 @@
   <script src="{{- $js4.Permalink | relURL -}}"></script>
 {{- end -}}
 
-
-{{- if .Site.Params.jsIntegrity -}}
-  <script src="{{- $js10.Permalink | relURL -}}" integrity="{{- $js10.Data.Integrity -}}"></script>
-  <script src="{{- $js11.Permalink | relURL -}}" integrity="{{- $js11.Data.Integrity -}}"></script>
-{{- else -}}
-  <script src="{{- $js10.Permalink | relURL -}}"></script>
-  <script src="{{- $js11.Permalink | relURL -}}"></script>
-{{- end -}}
-
 <script>
-  hljs.initHighlightingOnLoad();
-  hljs.initLineNumbersOnLoad();
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('.codeinline').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
+  var mathjax_pagemacros = (typeof mathjax_pagemacros == 'undefined') ? [] : mathjax_pagemacros;
 
-<script>
   MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -66,11 +41,14 @@
     svg: {
       fontCache: 'global'
     },
-    loader: {load: ['[tex]/color']},
-    tex: {packages: {'[+]': ['color']}}
+    loader: {load: ['[tex]/color', '[tex]/configMacros']},
+    tex: {
+      packages: {'[+]': ['color', 'configMacros']},
+      macros: mathjax_pagemacros
+    },
   };
   
 </script>
 <script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
